@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.LinkedList;
 
 
-public final class PayrollGenerator {
+public final class Trial {
     /** default file name for employees. */
     private static final String DEFAULT_EMPLOYEE_FILE = "resources/employees.csv";
     private static final String DEFAULT_PAYROLL_FILE = "resources/pay_stubs.csv";
@@ -15,7 +15,7 @@ public final class PayrollGenerator {
     /**
      * private constructor to prevent instantiation.
      */
-    private PayrollGenerator() {
+    private Trial() {
 
     }
 
@@ -33,7 +33,7 @@ public final class PayrollGenerator {
                 .collect(Collectors.toList());
 
         List<ITimeCard> timeCardList = timeCards.stream().map(Builder::buildTimeCardFromCSV)
-                .collect(Collectors.toList());
+               .collect(Collectors.toList());
 
         List<IPayStub> payStubs = new LinkedList<>();
 

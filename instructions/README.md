@@ -66,11 +66,11 @@ We have provided a few files for you. Please read this list carefully, as it wil
 * **IEmployee.java** - an interface that all employees must implement. **DO NOT CHANGE THIS FILE**. We are providing this file as a contract for you to follow, and use it directly in our grading tests. 
   * Within this file, each methods purpose and constraints are detailed in the javadoc. Make sure to read this carefully.
 * **IPayStub.java** - an interface that all pay stubs must implement. You can change this file, as we only grade the final output of paystubs, but we needed to include the interface for IEmployee. 
-* **FileUtil.java**- This file contains methods that read and write lists from and to files. You can use this as is or you can modify it. Most students will leave this file unchanged. We provided this so you didn't have to know how to write to files in Java (at this time), but we will ask questions about it. 
+* **FileUtil.java**- This file contains methods that read and write lists from and to files. You can use this as is or you can modify it. **Most students will leave this file unchanged**. We provided this so you didn't have to know how to write to files in Java (at this time), but we will ask questions about it. 
 * **PayrollGenerator.java** - This is the main driver class for the program. You will need to implement the main method in this class. We have provided some guidance in the file on using FileUtil.java to read and write files. You do not have to use it this way. 
   * DO NOT CHANGE the Arguments inner class, and make sure to use it in your code to get the file names. This will allow us to change the program arguments to test your code.
 * **Builder.java** - Contains two methods you will want to implement. While you can add
-  more, you shouldn't need to. Remember to add error checking to the methods as you 
+  more, you shouldn't need to. Remember to add **error checking to the methods** as you 
   are reading in file data. 
 * **ITimeCard** - You can update this file. Contains two suggested methods for 
   TimeCard object. 
