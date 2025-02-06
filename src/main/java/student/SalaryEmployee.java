@@ -49,7 +49,7 @@ public class SalaryEmployee implements IEmployee{
     }
 
     public String getEmployeeType(){
-        return "Salary";
+        return "SALARY";
     }
 
     public IPayStub runPayroll(double hoursWorked){
