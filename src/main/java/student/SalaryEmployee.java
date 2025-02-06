@@ -64,7 +64,7 @@ public class SalaryEmployee implements IEmployee{
     public String toCSV() {
         return String.format("%s,%s,%s,%.2f,%.2f,%.2f,%.2f",
                 //getEmployeeType(), getName(), getID(), getPayRate(), getPretaxDeductions(), getYTDEarnings()+h_pay-h_taxes-getPretaxDeductions(), getYTDTaxesPaid()+h_taxes);
-                getEmployeeType(), getName(), getID(), getPayRate(), getYTDEarnings()+h_pay-h_taxes-getPretaxDeductions(), getYTDTaxesPaid()+h_taxes, getPretaxDeductions());
+                getEmployeeType(), getName(), getID(), getPayRate(), getYTDTaxesPaid()+h_taxes, getYTDEarnings()+h_pay-h_taxes-getPretaxDeductions(), getYTDTaxesPaid()+h_taxes);
 
     }
 }
