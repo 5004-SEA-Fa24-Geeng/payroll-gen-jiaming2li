@@ -37,11 +37,11 @@ public class HourlyEmployee implements IEmployee{
 
     @Override
     public double getYTDEarnings(){
-        return this.ytdEarnings;
+        return ytdEarnings;
     }
 
     public double getYTDTaxesPaid(){
-        return this.ytdTaxesPaid;
+        return ytdTaxesPaid;
     }
 
     public double getPretaxDeductions(){
@@ -52,13 +52,6 @@ public class HourlyEmployee implements IEmployee{
         return "HOURLY";
     }
 
-    public void setYtdEarnings(double n){
-        ytdEarnings = n;
-    }
-
-    public void setYtdTaxesPaid(double n){
-        ytdTaxesPaid = n;
-    }
 
     public IPayStub runPayroll(double hoursWorked){
         if (hoursWorked > 40) {
