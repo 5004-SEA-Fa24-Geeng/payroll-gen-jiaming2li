@@ -43,11 +43,7 @@ public final class PayrollGenerator {
             for (ITimeCard p : timeCardList) {
                 if (p.getEmployeeID().equals(ID)) {
                     IPayStub payStub = e.runPayroll(p.getHoursWorked());
-                    //System.out.println(e.runPayroll(p.getHoursWorked()).toCSV());
                     payStubs.add(payStub);
-                    payStub.getPay();
-                    payStub.getTaxesPaid();
-
                 }
             }
         }

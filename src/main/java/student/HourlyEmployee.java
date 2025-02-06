@@ -37,11 +37,11 @@ public class HourlyEmployee implements IEmployee{
 
     @Override
     public double getYTDEarnings(){
-        return ytdEarnings;
+        return this.ytdEarnings;
     }
 
     public double getYTDTaxesPaid(){
-        return ytdTaxesPaid;
+        return this.ytdTaxesPaid;
     }
 
     public double getPretaxDeductions(){
@@ -52,6 +52,14 @@ public class HourlyEmployee implements IEmployee{
         return "HOURLY";
     }
 
+    public void setYtdEarnings(double n){
+        ytdEarnings = n;
+    }
+
+    public void setYtdTaxesPaid(double n){
+        ytdTaxesPaid = n;
+    }
+
     public IPayStub runPayroll(double hoursWorked){
         if (hoursWorked > 40) {
             h_pay = 1.5 * getPayRate() * (hoursWorked - 40) + 40 * getPayRate();
@@ -59,13 +67,17 @@ public class HourlyEmployee implements IEmployee{
             h_pay = hoursWorked * getPayRate();
         }
         h_taxes = (h_pay - getPretaxDeductions())* 0.2265;
+        //setYtdEarnings(ytdEarnings - h_taxes + h_pay - pretaxDeductions);
+        //setYtdTaxesPaid(ytdTaxesPaid + h_taxes);
+        ytdEarnings += h_pay-h_taxes-pretaxDeductions;
+        ytdTaxesPaid += h_taxes;
         return new PayStub(h_pay, h_taxes,this);
     }
 
     @Override
     public String toCSV() {
         return String.format("%s,%s,%s,%.2f,%.2f,%.2f,%.2f",
-                getEmployeeType(), getName(), getID(), getPayRate(), getPretaxDeductions(), getYTDEarnings()+h_pay-h_taxes-getPretaxDeductions(), getYTDTaxesPaid()+h_taxes);
+                getEmployeeType(), getName(), getID(), getPayRate(), getPretaxDeductions(), getYTDEarnings(), getYTDTaxesPaid());
 
     }
 }

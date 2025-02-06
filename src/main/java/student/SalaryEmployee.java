@@ -57,7 +57,17 @@ public class SalaryEmployee implements IEmployee{
 
         h_pay = getPayRate()/24;
         h_taxes = (h_pay - getPretaxDeductions())* 0.2265;
+        ytdEarnings += h_pay-h_taxes-pretaxDeductions;
+        ytdTaxesPaid += h_taxes;
         return new PayStub(h_pay, h_taxes,this);
+    }
+
+    public void setYtdEarnings(double n){
+        this.ytdEarnings = n;
+    }
+
+    public void setYtdTaxesPaid(double n){
+        this.ytdTaxesPaid = n;
     }
 
     @Override

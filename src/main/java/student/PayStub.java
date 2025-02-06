@@ -23,6 +23,6 @@ public class PayStub implements IPayStub{
 
     public String toCSV(){
         return String.format("%s,%.2f,%.2f,%.2f,%.2f",
-                e.getName(), pay-tax-e.getPretaxDeductions(), tax, e.getYTDEarnings()+pay-tax-e.getPretaxDeductions(), e.getYTDTaxesPaid()+tax);
+                e.getName(), pay-tax-e.getPretaxDeductions(), tax, e.getYTDEarnings(), e.getYTDTaxesPaid());
     }
 }
