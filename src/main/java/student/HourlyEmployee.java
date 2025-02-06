@@ -60,8 +60,6 @@ public class HourlyEmployee implements IEmployee{
             h_pay = hoursWorked * getPayRate();
         }
         h_taxes = (h_pay - getPretaxDeductions())* 0.2265;
-        //setYtdEarnings(ytdEarnings - h_taxes + h_pay - pretaxDeductions);
-        //setYtdTaxesPaid(ytdTaxesPaid + h_taxes);
         ytdEarnings += h_pay-h_taxes-pretaxDeductions;
         ytdTaxesPaid += h_taxes;
         return new PayStub(h_pay, h_taxes,this);
@@ -70,7 +68,6 @@ public class HourlyEmployee implements IEmployee{
     @Override
     public String toCSV() {
         return String.format("%s,%s,%s,%.2f,%.2f,%.2f,%.2f",
-                getEmployeeType(), getName(), getID(), getPayRate(), getPretaxDeductions(), getYTDEarnings(), getYTDTaxesPaid());
-
+                getEmployeeType(), getName(), getID(), getPayRate(), getPretaxDeductions(), ytdEarnings, ytdTaxesPaid);
     }
 }
