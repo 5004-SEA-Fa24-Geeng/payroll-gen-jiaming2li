@@ -19,6 +19,7 @@ public class SalaryEmployee implements IEmployee{
         this.pretaxDeductions = pretaxDeductions;
     }
 
+
     @Override
     public String getName(){
         return name;
