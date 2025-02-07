@@ -61,10 +61,11 @@ public class SalaryEmployee implements IEmployee{
     public IPayStub runPayroll(double hoursWorked){
 
         h_pay = payRate/24;
-        h_taxes = (h_pay - getPretaxDeductions())* 0.2265;
-        ytdEarnings += h_pay-h_taxes-pretaxDeductions;
-        ytdTaxesPaid += h_taxes;
+        h_taxes = (h_pay - pretaxDeductions)* 0.2265;
         net_pay = h_pay-h_taxes-pretaxDeductions;
+        ytdEarnings += net_pay;
+        ytdTaxesPaid += h_taxes;
+
         return new PayStub(name,net_pay, h_taxes, ytdEarnings, ytdTaxesPaid);
         //return new PayStub(h_pay, h_taxes,this);
     }

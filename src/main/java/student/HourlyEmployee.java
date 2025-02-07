@@ -58,15 +58,16 @@ public class HourlyEmployee implements IEmployee{
 
     @Override
     public IPayStub runPayroll(double hoursWorked){
+        h_pay = hoursWorked * payRate;
         if (hoursWorked > 40) {
-            h_pay = 1.5 * payRate * (hoursWorked - 40) + 40 * payRate;
-        } else {
-            h_pay = hoursWorked * payRate;
-        }
+            h_pay += (hoursWorked-40)*0.5 * payRate;
+        };
+
         h_taxes = (h_pay - pretaxDeductions)* 0.2265;
-        ytdEarnings += h_pay-h_taxes-pretaxDeductions;
-        ytdTaxesPaid += h_taxes;
         net_pay = h_pay-h_taxes-pretaxDeductions;
+        ytdEarnings += net_pay;
+        ytdTaxesPaid += h_taxes;
+
         return new PayStub(name, net_pay,h_taxes,ytdEarnings,ytdTaxesPaid);
     }
 
