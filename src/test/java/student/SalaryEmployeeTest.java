@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HourlyEmployeeTest {
+class SalaryEmployeeTest {
 
-    private HourlyEmployee employee;
+    private SalaryEmployee employee;
 
     @BeforeEach
     void setUp() {
-        employee = new HourlyEmployee("Chichi Zhang", "123456", 20.0, 5000.0, 1000.0, 200.0);
+        employee = new SalaryEmployee("Chichi Zhang", "123456", 48000.0, 5000.0, 1000.0, 200.0);
     }
 
     @Test
@@ -26,7 +26,7 @@ class HourlyEmployeeTest {
 
     @Test
     void getPayRate() {
-        assertEquals(20.0, employee.getPayRate());
+        assertEquals(48000.0, employee.getPayRate());
     }
 
     @Test
@@ -46,20 +46,28 @@ class HourlyEmployeeTest {
 
     @Test
     void getEmployeeType() {
-        assertEquals("HOURLY", employee.getEmployeeType());
+        assertEquals("SALARY", employee.getEmployeeType());
     }
 
     @Test
     void runPayroll() {
         IPayStub stub = employee.runPayroll(40);
         assertNotNull(stub);
-        assertEquals((20 * 40 - 200) * (1 - 0.2265), stub.getPay(), 0.01);
-        assertEquals((20 * 40 - 200) * 0.2265, stub.getTaxesPaid(), 0.01);
+
+        double expectedTotalPay = 48000.0 / 24;
+        double expectedPretaxDeductions = 200.0 / 24;
+        double expectedPayShouldTax = expectedTotalPay - expectedPretaxDeductions;
+        double expectedTaxes = expectedPayShouldTax * 0.2265;
+        double expectedPayAfterTax = expectedPayShouldTax - expectedTaxes;
+
+        assertEquals(expectedPayAfterTax, stub.getPay(), 0.01);
+        assertEquals(expectedTaxes, stub.getTaxesPaid(), 0.01);
     }
+
 
     @Test
     void toCSV() {
-        String expected = "HOURLY,Chichi Zhang,123456,20.0,200.0,5000.0,1000.0";
+        String expected = "SALARY,Chichi Zhang,123456,48000.0,200.0,5000.0,1000.0";
         assertEquals(expected, employee.toCSV());
     }
 }
