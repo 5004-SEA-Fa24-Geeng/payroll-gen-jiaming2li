@@ -9,6 +9,7 @@ public class SalaryEmployee implements IEmployee{
     private double pretaxDeductions;
     private double h_pay;
     private double h_taxes;
+    private double net_pay;
 
     public SalaryEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
         this.name = name;
@@ -59,11 +60,13 @@ public class SalaryEmployee implements IEmployee{
     @Override
     public IPayStub runPayroll(double hoursWorked){
 
-        h_pay = getPayRate()/24;
+        h_pay = payRate/24;
         h_taxes = (h_pay - getPretaxDeductions())* 0.2265;
         ytdEarnings += h_pay-h_taxes-pretaxDeductions;
         ytdTaxesPaid += h_taxes;
-        return new PayStub(h_pay, h_taxes,this);
+        net_pay = h_pay-h_taxes-pretaxDeductions;
+        return new PayStub(name,net_pay, h_taxes, ytdEarnings, ytdTaxesPaid);
+        //return new PayStub(h_pay, h_taxes,this);
     }
 
 

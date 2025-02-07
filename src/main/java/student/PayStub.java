@@ -1,21 +1,28 @@
 package student;
 
 public class PayStub implements IPayStub{
-    double hoursWorked;
-    double pay;
+    //double hoursWorked;
     double tax;
-    IEmployee e;
+    String name;
+    double Npay;
+    double ytdE;
+    double ytdT;
+
+    //IEmployee e;
 
 
-    public PayStub(double pay, double tax, IEmployee e) {
-        this.pay = pay;
+    public PayStub(String name, double Npay, double tax, double ytdE, double ytdT) {
+        this.name = name;
+        this.Npay = Npay;
         this.tax = tax;
-        this.e = e;
+        this.ytdE = ytdE;
+        this.ytdT = ytdT;
+        //this.e = e;
     }
 
     @Override
     public double getPay(){
-        return pay;
+        return Npay;
     }
 
     @Override
@@ -26,6 +33,6 @@ public class PayStub implements IPayStub{
     @Override
     public String toCSV(){
         return String.format("%s,%.2f,%.2f,%.2f,%.2f",
-                e.getName(), pay-tax-e.getPretaxDeductions(), tax, e.getYTDEarnings(), e.getYTDTaxesPaid());
+                name, Npay, tax, ytdE, ytdT);
     }
 }

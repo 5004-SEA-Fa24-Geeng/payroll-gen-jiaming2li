@@ -9,6 +9,7 @@ public class HourlyEmployee implements IEmployee{
     private double pretaxDeductions;
     private double h_pay;
     private double h_taxes;
+    private double net_pay;
 
     public HourlyEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
         this.name = name;
@@ -65,7 +66,8 @@ public class HourlyEmployee implements IEmployee{
         h_taxes = (h_pay - getPretaxDeductions())* 0.2265;
         ytdEarnings += h_pay-h_taxes-pretaxDeductions;
         ytdTaxesPaid += h_taxes;
-        return new PayStub(h_pay, h_taxes,this);
+        net_pay = h_pay-h_taxes-pretaxDeductions;
+        return new PayStub(name, net_pay,h_taxes,ytdEarnings,ytdTaxesPaid);
     }
 
     @Override
