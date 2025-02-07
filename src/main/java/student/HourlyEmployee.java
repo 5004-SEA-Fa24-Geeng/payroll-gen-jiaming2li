@@ -7,9 +7,7 @@ public class HourlyEmployee implements IEmployee{
     private double ytdEarnings;
     private double ytdTaxesPaid;
     private double pretaxDeductions;
-    private double h_pay;
-    private double h_taxes;
-    private double net_pay;
+
 
     public HourlyEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
         this.name = name;
@@ -57,23 +55,23 @@ public class HourlyEmployee implements IEmployee{
     }
 
     @Override
-    public IPayStub runPayroll(double hoursWorked) {
+    public IPayStub runPayroll(double hoursWorked){
+
         if (hoursWorked < 0) {
             return null;
         }
 
-        double totalPay = payRate * hoursWorked;
+        double h_pay = hoursWorked * payRate;
         if (hoursWorked > 40) {
-            totalPay += (hoursWorked - 40) * (payRate * 0.5);
-        }
+            h_pay += (hoursWorked-40)*0.5 * payRate;
+        };
 
-        double payShouldTax = totalPay - pretaxDeductions;
-        double taxes = payShouldTax * 0.2265;
-        double payAfterTax = payShouldTax - taxes;
-        ytdEarnings += payAfterTax;
-        ytdTaxesPaid += taxes;
+        double h_taxes = (h_pay - pretaxDeductions)* 0.2265;
+        double net_pay = h_pay-h_taxes-pretaxDeductions;
+        ytdEarnings += net_pay;
+        ytdTaxesPaid += h_taxes;
 
-        return new PayStub(name, payAfterTax, taxes, ytdEarnings, ytdTaxesPaid);
+        return new PayStub(name, net_pay,h_taxes,ytdEarnings,ytdTaxesPaid);
     }
 
     @Override
