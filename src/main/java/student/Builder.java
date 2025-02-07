@@ -44,20 +44,16 @@ public final class Builder {
          */
     public static ITimeCard buildTimeCardFromCSV (String csv){
         String[] s = csv.split(",");
-        return new ITimeCard() {
-
-            @Override
-            public String getEmployeeID(){
-                return s[0];
+            if (s.length != 2) {
+                return null;
             }
 
-            @Override
-            public double getHoursWorked(){
-                return Double.parseDouble(s[1]);
-            }
+        String id = s[0];
+        double hoursWorked = Double.parseDouble(s[1]);
+        return new TimeCard(id, hoursWorked);
         };
 
     }
 
 
-}
+
