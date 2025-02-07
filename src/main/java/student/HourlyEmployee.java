@@ -57,23 +57,33 @@ public class HourlyEmployee implements IEmployee{
     }
 
     @Override
-    public IPayStub runPayroll(double hoursWorked){
-        h_pay = hoursWorked * payRate;
+    public IPayStub runPayroll(double hoursWorked) {
+        if (hoursWorked < 0) {
+            return null;
+        }
+
+        double totalPay = payRate * hoursWorked;
         if (hoursWorked > 40) {
-            h_pay += (hoursWorked-40)*0.5 * payRate;
-        };
+            totalPay += (hoursWorked - 40) * (payRate * 0.5);
+        }
 
-        h_taxes = (h_pay - pretaxDeductions)* 0.2265;
-        net_pay = h_pay-h_taxes-pretaxDeductions;
-        ytdEarnings += net_pay;
-        ytdTaxesPaid += h_taxes;
+        double payShouldTax = totalPay - pretaxDeductions;
+        double taxes = payShouldTax * 0.2265;
+        double payAfterTax = payShouldTax - taxes;
+        ytdEarnings += payAfterTax;
+        ytdTaxesPaid += taxes;
 
-        return new PayStub(name, net_pay,h_taxes,ytdEarnings,ytdTaxesPaid);
+        return new PayStub(name, payAfterTax, taxes, ytdEarnings, ytdTaxesPaid);
     }
 
     @Override
     public String toCSV() {
-        return String.format("%s,%s,%s,%.2f,%.2f,%.2f,%.2f",
-                "HOURLY", name, id, payRate, pretaxDeductions, ytdEarnings, ytdTaxesPaid);
+        return getEmployeeType() + ","
+                + name + ","
+                + id + ","
+                + payRate + ","
+                + pretaxDeductions + ","
+                + ytdEarnings + ","
+                + ytdTaxesPaid;
     }
 }
