@@ -125,8 +125,8 @@ public class SalaryEmployee implements IEmployee {
         }
 
         double totalPay = payRate / 24;
-        double periodPretaxDeductions = pretaxDeductions / 24;
-        double payShouldTax = totalPay - periodPretaxDeductions;
+//        double periodPretaxDeductions =  / 24;
+        double payShouldTax = totalPay - pretaxDeductions;
         double taxes = payShouldTax * 0.2265;
         double payAfterTax = payShouldTax - taxes;
 
