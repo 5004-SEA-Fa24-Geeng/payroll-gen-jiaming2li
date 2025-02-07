@@ -23,6 +23,9 @@ public final class Builder {
      */
     public static IEmployee buildEmployeeFromCSV(String csv) {
         String[] s = csv.split(",");
+        if(s.length != 7) {
+            throw new IllegalArgumentException("Invalid CSV format.");
+        }
         if (s[0].equals("HOURLY")) {
             return new HourlyEmployee(s[1], s[2], Double.parseDouble(s[3]), Double.parseDouble(s[5]), Double.parseDouble(s[6]), Double.parseDouble(s[4]));
         } else {

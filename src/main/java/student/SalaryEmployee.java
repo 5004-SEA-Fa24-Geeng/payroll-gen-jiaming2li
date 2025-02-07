@@ -41,18 +41,22 @@ public class SalaryEmployee implements IEmployee{
         return ytdEarnings;
     }
 
+    @Override
     public double getYTDTaxesPaid(){
         return ytdTaxesPaid;
     }
 
+    @Override
     public double getPretaxDeductions(){
         return pretaxDeductions;
     }
 
+    @Override
     public String getEmployeeType(){
         return "SALARY";
     }
 
+    @Override
     public IPayStub runPayroll(double hoursWorked){
 
         h_pay = getPayRate()/24;
@@ -62,13 +66,6 @@ public class SalaryEmployee implements IEmployee{
         return new PayStub(h_pay, h_taxes,this);
     }
 
-    public void setYtdEarnings(double n){
-        this.ytdEarnings = n;
-    }
-
-    public void setYtdTaxesPaid(double n){
-        this.ytdTaxesPaid = n;
-    }
 
     @Override
     public String toCSV() {

@@ -13,14 +13,17 @@ public class PayStub implements IPayStub{
         this.e = e;
     }
 
+    @Override
     public double getPay(){
         return pay;
     }
 
+    @Override
     public double getTaxesPaid(){
         return tax;
     }
 
+    @Override
     public String toCSV(){
         return String.format("%s,%.2f,%.2f,%.2f,%.2f",
                 e.getName(), pay-tax-e.getPretaxDeductions(), tax, e.getYTDEarnings(), e.getYTDTaxesPaid());

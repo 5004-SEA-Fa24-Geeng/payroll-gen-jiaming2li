@@ -40,19 +40,22 @@ public class HourlyEmployee implements IEmployee{
         return ytdEarnings;
     }
 
+    @Override
     public double getYTDTaxesPaid(){
         return ytdTaxesPaid;
     }
 
+    @Override
     public double getPretaxDeductions(){
         return pretaxDeductions;
     }
 
+    @Override
     public String getEmployeeType(){
         return "HOURLY";
     }
 
-
+    @Override
     public IPayStub runPayroll(double hoursWorked){
         if (hoursWorked > 40) {
             h_pay = 1.5 * getPayRate() * (hoursWorked - 40) + 40 * getPayRate();
