@@ -1,25 +1,25 @@
 package student;
 
-public class SalaryEmployee implements IEmployee{
-    /** Employee's name */
+public class SalaryEmployee implements IEmployee {
+    /** Employee's name. */
     private String name;
 
-    /** employee ID */
+    /** employee ID. */
     private String id;
 
-    /** Pay rate (hourly wage or annual salary) */
+    /** Pay rate (hourly wage or annual salary). */
     private double payRate;
 
-    /** Year-to-date (YTD) earnings */
+    /** Year-to-date (YTD) earnings. */
     private double ytdEarnings;
 
-    /** Year-to-date (YTD) taxes paid */
+    /** Year-to-date (YTD) taxes paid. */
     private double ytdTaxesPaid;
 
-    /** Pre-tax deductions */
+    /** Pre-tax deductions. */
     private double pretaxDeductions;
 
-
+    /** Constructor for class salary employee. */
     public SalaryEmployee(String name, String id, double payRate,
                           double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions
     ) {

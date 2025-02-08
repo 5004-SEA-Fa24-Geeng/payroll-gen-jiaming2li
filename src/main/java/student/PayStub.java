@@ -7,11 +7,19 @@ package student;
  * them here to keep the code clean (and to help guide you).
  */
 public class PayStub implements IPayStub {
-
+    /** taxes paid for the current pay period.*/
     private double tax;
+
+    /** taxes paid for the current pay period.*/
     private String name;
+
+    /** pay for the current pay period.*/
     private double netPay;
+
+    /** Year-to-date (YTD) earnings.*/
     private double ytdE;
+
+    /** Year-to-date (YTD) taxes paid.*/
     private double ytdT;
 
 

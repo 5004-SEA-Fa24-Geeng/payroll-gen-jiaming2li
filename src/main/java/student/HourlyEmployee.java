@@ -7,25 +7,25 @@ package student;
  * them here to keep the code clean (and to help guide you).
  */
 public class HourlyEmployee implements IEmployee {
-    /** Employee's name */
+    /** Employee's name. */
     private String name;
 
-    /** employee ID */
+    /** employee ID. */
     private String id;
 
-    /** Pay rate (hourly wage or annual salary) */
+    /** Pay rate (hourly wage or annual salary). */
     private double payRate;
 
-    /** Year-to-date (YTD) earnings */
+    /** Year-to-date (YTD) earnings. */
     private double ytdEarnings;
 
-    /** Year-to-date (YTD) taxes paid */
+    /** Year-to-date (YTD) taxes paid. */
     private double ytdTaxesPaid;
 
-    /** Pre-tax deductions */
+    /** Pre-tax deductions. */
     private double pretaxDeductions;
 
-
+    /** Constructor for class hourly employee. */
     public HourlyEmployee(String name, String id, double payRate,
                           double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions
     ) {
@@ -123,13 +123,12 @@ public class HourlyEmployee implements IEmployee {
             return null;
         }
 
-        double h_pay = hoursWorked * payRate;
+        double hPay = hoursWorked * payRate;
         if (hoursWorked > 40) {
-            h_pay += (hoursWorked-40) * 0.5 * payRate;
-        };
-
-        double h_taxes = (h_pay - pretaxDeductions) * 0.2265;
-        double net_pay = h_pay - h_taxes-pretaxDeductions;
+            hPay += (hoursWorked - 40) * 0.5 * payRate;
+        }
+        double h_taxes = (hPay - pretaxDeductions) * 0.2265;
+        double net_pay = hPay - h_taxes-pretaxDeductions;
         ytdEarnings += net_pay;
         ytdTaxesPaid += h_taxes;
 
