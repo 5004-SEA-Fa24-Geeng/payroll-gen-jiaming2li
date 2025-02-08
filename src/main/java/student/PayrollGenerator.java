@@ -21,8 +21,9 @@ public final class PayrollGenerator {
     }
 
     /**
-     * main part for the generator.
-     * @param args
+     * The entry point of the application. This method is executed when the program starts.
+     *
+     * @param args Command-line arguments passed to the program.
      */
     public static void main(String[] args) {
         Arguments arguments = Arguments.process(args); // leave this, and make sure you use it on

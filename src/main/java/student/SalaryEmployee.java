@@ -1,5 +1,9 @@
 package student;
 
+/**
+ * Represents a salary employee, storing details such as pay rate, work hours, and earnings.
+ * This class manages payroll-related calculations for hourly employees.
+ */
 public class SalaryEmployee implements IEmployee {
     /** Employee's name. */
     private String name;
@@ -20,12 +24,12 @@ public class SalaryEmployee implements IEmployee {
     private double pretaxDeductions;
 
     /** Constructor for class salary employee.
-     * @param name The name of the employee.
-     * @param id The unique ID of the employee.
-     * @param payRate The pay rate of the employee.
-     * @param ytdEarnings The year-to-date (YTD) total earnings of the employee.
-     * @param ytdTaxesPaid The year-to-date (YTD) total taxes paid by the employee.
-     * @param pretaxDeductions The total pre-tax deductions.
+     * @param name name of the employee.
+     * @param id ID of the employee.
+     * @param payRate pay rate of the employee.
+     * @param ytdEarnings year-to-date (YTD) total earnings of the employee.
+     * @param ytdTaxesPaid year-to-date (YTD) total taxes paid by the employee.
+     * @param pretaxDeductions total pre-tax deductions.
      */
     public SalaryEmployee(String name, String id, double payRate,
                           double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions

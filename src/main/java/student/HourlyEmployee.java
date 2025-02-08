@@ -1,10 +1,8 @@
 package student;
 
 /**
- * This is a static class (essentially functions) that will help you build objects from CSV strings.
- * These objects are then used in the rest of the program. Often these builders are associated
- * with the objects themselves and the concept of a factory, but we placed
- * them here to keep the code clean (and to help guide you).
+ * Represents an hourly employee, storing details such as pay rate, work hours, and earnings.
+ * This class manages payroll-related calculations for hourly employees.
  */
 public class HourlyEmployee implements IEmployee {
     /** Employee's name. */
@@ -135,7 +133,7 @@ public class HourlyEmployee implements IEmployee {
             hPay += (hoursWorked - 40) * 0.5 * payRate;
         }
         double hTaxes = (hPay - pretaxDeductions) * 0.2265;
-        double netPay = hPay - hTaxes-pretaxDeductions;
+        double netPay = hPay - hTaxes - pretaxDeductions;
         ytdEarnings += netPay;
         ytdTaxesPaid += hTaxes;
 

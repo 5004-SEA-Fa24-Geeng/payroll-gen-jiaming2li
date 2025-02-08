@@ -41,12 +41,12 @@ public final class Builder {
 
 
 
-        /**
-         * Converts a TimeCard from a CSV String.
-         *
-         * @param csv csv string
-         * @return a TimeCard object
-         */
+    /**
+     * Converts a TimeCard from a CSV String.
+     *
+     * @param csv csv string
+     * @return a TimeCard object
+     */
     public static ITimeCard buildTimeCardFromCSV(String csv) {
         String[] s = csv.split(",");
             if (s.length != 2) {

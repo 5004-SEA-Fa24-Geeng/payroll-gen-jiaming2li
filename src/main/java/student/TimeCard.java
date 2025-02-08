@@ -5,17 +5,17 @@ package student;
  * Implements the {@link ITimeCard} interface to define time card behavior.
  */
 public class TimeCard implements ITimeCard {
-    /** The unique identifier (ID) of the employee associated with this time card. */
+    /** The ID of the employee. */
     private String id;
 
-    /** The number of hours worked by the employee in the current pay period. */
+    /** The number of hours worked in the current pay period. */
     private double hoursWorked;
 
     /**
      * Constructs a new {@code TimeCard} with the specified details.
      *
-     * @param id The unique ID of the employee.
-     * @param hoursWorked The number of hours worked in the current pay period.
+     * @param id the ID of the employee.
+     * @param hoursWorked the number of hours worked in the current pay period.
      */
     public TimeCard(String id, double hoursWorked) {
         this.id = id;
@@ -45,8 +45,7 @@ public class TimeCard implements ITimeCard {
     /**
      * Converts the time card details to a string representation.
      *
-     * @return A string representing the time card in the format:
-     *         "TimeCard{employeeID='id', hoursWorked=hoursWorked}".
+     * @return A string representing the time card.
      */
     @Override
     public String toString() {
