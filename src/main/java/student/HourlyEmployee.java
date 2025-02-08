@@ -25,7 +25,14 @@ public class HourlyEmployee implements IEmployee {
     /** Pre-tax deductions. */
     private double pretaxDeductions;
 
-    /** Constructor for class hourly employee. */
+    /** Constructor for class hourly employee.
+     * @param name The name of the employee.
+     * @param id The unique ID of the employee.
+     * @param payRate The pay rate of the employee.
+     * @param ytdEarnings The year-to-date (YTD) total earnings of the employee.
+     * @param ytdTaxesPaid The year-to-date (YTD) total taxes paid by the employee.
+     * @param pretaxDeductions The total pre-tax deductions.
+     */
     public HourlyEmployee(String name, String id, double payRate,
                           double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions
     ) {
@@ -127,12 +134,12 @@ public class HourlyEmployee implements IEmployee {
         if (hoursWorked > 40) {
             hPay += (hoursWorked - 40) * 0.5 * payRate;
         }
-        double h_taxes = (hPay - pretaxDeductions) * 0.2265;
-        double net_pay = hPay - h_taxes-pretaxDeductions;
-        ytdEarnings += net_pay;
-        ytdTaxesPaid += h_taxes;
+        double hTaxes = (hPay - pretaxDeductions) * 0.2265;
+        double netPay = hPay - hTaxes-pretaxDeductions;
+        ytdEarnings += netPay;
+        ytdTaxesPaid += hTaxes;
 
-        return new PayStub(name, net_pay, h_taxes, ytdEarnings, ytdTaxesPaid);
+        return new PayStub(name, netPay, hTaxes, ytdEarnings, ytdTaxesPaid);
     }
 
     /**

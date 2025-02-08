@@ -23,7 +23,7 @@ public class PayStub implements IPayStub {
     private double ytdT;
 
 
-
+    /** Constructor for class PayStub.*/
     public PayStub(String name, double netPay, double tax, double ytdE, double ytdT) {
         this.name = name;
         this.netPay = netPay;

@@ -19,7 +19,14 @@ public class SalaryEmployee implements IEmployee {
     /** Pre-tax deductions. */
     private double pretaxDeductions;
 
-    /** Constructor for class salary employee. */
+    /** Constructor for class salary employee.
+     * @param name The name of the employee.
+     * @param id The unique ID of the employee.
+     * @param payRate The pay rate of the employee.
+     * @param ytdEarnings The year-to-date (YTD) total earnings of the employee.
+     * @param ytdTaxesPaid The year-to-date (YTD) total taxes paid by the employee.
+     * @param pretaxDeductions The total pre-tax deductions.
+     */
     public SalaryEmployee(String name, String id, double payRate,
                           double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions
     ) {
@@ -37,7 +44,7 @@ public class SalaryEmployee implements IEmployee {
      * @return the name of the employee
      */
     @Override
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -47,7 +54,7 @@ public class SalaryEmployee implements IEmployee {
      * @return the ID of the employee
      */
     @Override
-    public String getID(){
+    public String getID() {
         return id;
     }
 
@@ -57,7 +64,7 @@ public class SalaryEmployee implements IEmployee {
      * @return the pay rate of the employee
      */
     @Override
-    public double getPayRate(){
+    public double getPayRate() {
         return payRate;
     }
 
@@ -67,7 +74,7 @@ public class SalaryEmployee implements IEmployee {
      * @return the YTD earnings of the employee
      */
     @Override
-    public double getYTDEarnings(){
+    public double getYTDEarnings() {
         return ytdEarnings;
     }
 
@@ -77,7 +84,7 @@ public class SalaryEmployee implements IEmployee {
      * @return the YTD taxes paid by the employee
      */
     @Override
-    public double getYTDTaxesPaid(){
+    public double getYTDTaxesPaid() {
         return ytdTaxesPaid;
     }
 
@@ -87,7 +94,7 @@ public class SalaryEmployee implements IEmployee {
      * @return the pretax deductions for the employee
      */
     @Override
-    public double getPretaxDeductions(){
+    public double getPretaxDeductions() {
         return pretaxDeductions;
     }
 
@@ -98,7 +105,7 @@ public class SalaryEmployee implements IEmployee {
      * @return the type of the employee as a string
      */
     @Override
-    public String getEmployeeType(){
+    public String getEmployeeType() {
         return "SALARY";
     }
 
