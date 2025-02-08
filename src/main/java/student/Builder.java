@@ -23,7 +23,7 @@ public final class Builder {
      */
     public static IEmployee buildEmployeeFromCSV(String csv) {
         String[] s = csv.split(",");
-        if(s.length != 7) {
+        if (s.length != 7) {
             throw new IllegalArgumentException("Invalid CSV format.");
         }
         double payRate = Double.parseDouble(s[3]);
