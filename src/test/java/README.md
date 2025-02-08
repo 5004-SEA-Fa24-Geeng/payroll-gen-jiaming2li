@@ -15,3 +15,37 @@ In practice the steps end up being
 Often the first test has a lot of setup to build for classes and methods that don't exist yet. This is normal.
 
 You will also refactor your code a lot as you go along. This is also normal.
+
+classDiagram
+direction LR
+AlohaWorld --> ConsoleView : uses
+AlohaWorld --> Greeter : has-a
+ConsoleView --> Greeter : uses
+
+    class AlohaWorld {
+        -AlohaWorld()
+        +main(String[] args)
+    }
+    
+    class ConsoleView {
+        -ConsoleView()
+        +static String getName()
+        +static int getLocality()
+        +static boolean checkRunAgain()
+        +static void printGreeting(String greeting)
+    }
+    
+    class Greeter {
+        -int locality
+        - List<String> localityList
+        +Greeter(String name)
+        +Greeter(String name, int locality)
+        +String getName()
+        +int getLocality()
+        +void setLocality(int locality)
+        +String greet()
+        +String greet(boolean asciiOnly)
+        +boolean equals(Object obj)
+        +String toString()
+        +List<String> getLocalityList()
+    }

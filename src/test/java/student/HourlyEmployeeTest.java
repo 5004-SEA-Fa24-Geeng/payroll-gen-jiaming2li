@@ -1,72 +1,78 @@
 package student;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-public class HourlyEmployeeTest {
-    private HourlyEmployee e;
+import static org.junit.jupiter.api.Assertions.*;
+class HourlyEmployeeTest {
+    private HourlyEmployee e1;
+    private HourlyEmployee e2;
+
 
     @BeforeEach
-    public void setUp() {
-        e = new HourlyEmployee("John Doe", "s192", 20.00, 10000.00, 2000.00, 500.00);
+    void setUp() {
+        //assertThrows(IllegalArgumentException.class, () -> {
+        //    new Greeter(NAME_ONE, 0);
+        //});
+        e1 = new HourlyEmployee("Luffy", "s192", 30.00, 20000.00, 4530, 0);
+        assertTrue(e1 instanceof HourlyEmployee);
+        e2 = new HourlyEmployee("Light Yagami", "x101", 25.00, 10000.00, 2265, 0);
+        assertTrue(e2 instanceof HourlyEmployee);
     }
 
     @Test
-    public void testGetName() {
-        assertEquals("John Doe", e.getName());
+    void getName() {
+        assertEquals("Luffy", e1.getName());
+        assertEquals("Light Yagami", e2.getName());
     }
 
     @Test
-    public void testGetID() {
-        assertEquals("s192", e.getID());
+    void getID() {
+        assertEquals("s192", e1.getID());
+        assertEquals("x101", e2.getID());
     }
 
     @Test
-    public void testGetPayRate() {
-        assertEquals(20.00, e.getPayRate());
+    void getPayRate() {
+        assertEquals(30.00, e1.getPayRate());
+        assertEquals(25.00, e2.getPayRate());
     }
 
     @Test
-    public void testGetYTDEarnings() {
-        assertEquals(10000.00, e.getYTDEarnings());
+    void getYTDEarnings() {
+        assertEquals(20000.00, e1.getYTDEarnings());
+        assertEquals(10000.00, e2.getYTDEarnings());
     }
 
     @Test
-    public void testGetYTDTaxesPaid() {
-        assertEquals(2000.00, e.getYTDTaxesPaid());
+    void getYTDTaxesPaid() {
+        assertEquals(4530.00, e1.getYTDTaxesPaid());
+        assertEquals(2265.00, e2.getYTDTaxesPaid());
     }
 
     @Test
-    public void testGetPretaxDeductions() {
-        assertEquals(500.00, e.getPretaxDeductions());
+    void getPretaxDeductions() {
+        assertEquals(0, e1.getPretaxDeductions());
+        assertEquals(0, e2.getPretaxDeductions());
     }
 
     @Test
-    public void testRunPayrollWithLessThan40Hours() {
-
-        IPayStub payStub = e.runPayroll(30);
-        assertEquals(600.00, payStub.getPay());
-        assertEquals(135.00, payStub.getTaxes(), "The tax should be 135.00 (600 * 0.2265 - pretaxDeductions)");
+    void getEmployeeType() {
+        assertEquals("HOURLY", e1.getEmployeeType());
+        assertEquals("HOURLY", e2.getEmployeeType());
     }
 
     @Test
-    public void testRunPayrollWithMoreThan40Hours() {
-        // Test with 45 hours worked
-        IPayStub payStub = e.runPayroll(45);
-        assertNotNull(payStub, "The pay stub should not be null");
-        assertEquals(950.00, payStub.getPay(), "The pay should be 950.00 (40 hours * 20 + 5 hours * 1.5 * 20)");
-        assertEquals(214.10, payStub.getTaxes(), "The tax should be 214.10 (950 * 0.2265 - pretaxDeductions)");
+    void runPayroll() {
+        String expectedCsv1 = "Luffy,1102.24,322.76,21102.24,4852.76";
+        assertEquals(expectedCsv1, e1.runPayroll(45).toCSV());
+        String expectedCsv2 = "Light Yagami,773.50,226.50,10773.50,2491.50";
+        assertEquals(expectedCsv2, e2.runPayroll(40).toCSV());
     }
 
     @Test
-    public void testToCSV() {
-        String expectedCSV = "HOURLY,John Doe,s192,20.00,500.00,10000.00,2000.00";
-        assertEquals(expectedCSV, e.toCSV());
-    }
+    void toCSV() {
+        assertEquals("HOURLY,Luffy,s192,30.0,0.0,20000.0,4530.0", e1.toCSV());
+        assertEquals("HOURLY,Light Yagami,x101,25.0,0.0,10000.0,2265.0", e2.toCSV());
 
-    @Test
-    public void testEmployeeType() {
-        assertEquals("HOURLY", e.getEmployeeType());
     }
 }

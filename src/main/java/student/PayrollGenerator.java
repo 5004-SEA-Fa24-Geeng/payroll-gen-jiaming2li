@@ -8,7 +8,9 @@ import java.util.LinkedList;
 public final class PayrollGenerator {
     /** default file name for employees. */
     private static final String DEFAULT_EMPLOYEE_FILE = "resources/employees.csv";
+    /** default file name for payroll. */
     private static final String DEFAULT_PAYROLL_FILE = "resources/pay_stubs.csv";
+    /** default file name for time card. */
     private static final String DEFAULT_TIME_CARD_FILE = "resources/time_cards.csv";
 
 
@@ -16,9 +18,12 @@ public final class PayrollGenerator {
      * private constructor to prevent instantiation.
      */
     private PayrollGenerator() {
-
     }
 
+    /**
+     * main part for the generator
+     * @param args
+     */
     public static void main(String[] args) {
         Arguments arguments = Arguments.process(args); // leave this, and make sure you use it on
         // reading/writing files!
@@ -39,9 +44,9 @@ public final class PayrollGenerator {
 
         //**
         for (IEmployee e : employees) {
-            String ID = e.getID();
+            String eID = e.getID();
             for (ITimeCard p : timeCardList) {
-                if (p.getEmployeeID().equals(ID)) {
+                if (p.getEmployeeID().equals(eID)) {
                     IPayStub payStub = e.runPayroll(p.getHoursWorked());
                     payStubs.add(payStub);
                 }

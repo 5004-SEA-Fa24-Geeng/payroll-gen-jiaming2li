@@ -26,10 +26,15 @@ public final class Builder {
         if(s.length != 7) {
             throw new IllegalArgumentException("Invalid CSV format.");
         }
+        double payRate = Double.parseDouble(s[3]);
+        double ytdEarnings = Double.parseDouble(s[5]);
+        double ytdTaxes = Double.parseDouble(s[6]);
+        double preDeduction = Double.parseDouble(s[4]);
+
         if (s[0].equals("HOURLY")) {
-            return new HourlyEmployee(s[1], s[2], Double.parseDouble(s[3]), Double.parseDouble(s[5]), Double.parseDouble(s[6]), Double.parseDouble(s[4]));
+            return new HourlyEmployee(s[1], s[2], payRate, ytdEarnings, ytdTaxes, preDeduction);
         } else {
-            return new SalaryEmployee(s[1], s[2], Double.parseDouble(s[3]), Double.parseDouble(s[5]), Double.parseDouble(s[6]), Double.parseDouble(s[4]));
+            return new SalaryEmployee(s[1], s[2], payRate, ytdEarnings, ytdTaxes, preDeduction);
         }
 
     }
@@ -42,7 +47,7 @@ public final class Builder {
          * @param csv csv string
          * @return a TimeCard object
          */
-    public static ITimeCard buildTimeCardFromCSV (String csv){
+    public static ITimeCard buildTimeCardFromCSV(String csv){
         String[] s = csv.split(",");
             if (s.length != 2) {
                 return null;

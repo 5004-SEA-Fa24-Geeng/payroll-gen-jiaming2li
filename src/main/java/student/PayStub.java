@@ -1,38 +1,84 @@
 package student;
 
-public class PayStub implements IPayStub{
-    //double hoursWorked;
-    double tax;
-    String name;
-    double Npay;
-    double ytdE;
-    double ytdT;
+/**
+ * This is a static class (essentially functions) that will help you build objects from CSV strings.
+ * These objects are then used in the rest of the program. Often these builders are associated
+ * with the objects themselves and the concept of a factory, but we placed
+ * them here to keep the code clean (and to help guide you).
+ */
+public class PayStub implements IPayStub {
 
-    //IEmployee e;
+    private double tax;
+    private String name;
+    private double netPay;
+    private double ytdE;
+    private double ytdT;
 
 
-    public PayStub(String name, double Npay, double tax, double ytdE, double ytdT) {
+
+    public PayStub(String name, double netPay, double tax, double ytdE, double ytdT) {
         this.name = name;
-        this.Npay = Npay;
+        this.netPay = netPay;
         this.tax = tax;
         this.ytdE = ytdE;
         this.ytdT = ytdT;
-        //this.e = e;
     }
 
-    @Override
-    public double getPay(){
-        return Npay;
+    /**
+     * Gets the employee's name.
+     *
+     * @return the name of the employee
+     */
+    public String getName() {
+        return name;
     }
 
+    /**
+     * Gets the pay for the current pay period.
+     *
+     * @return the pay for the current pay period
+     */
     @Override
-    public double getTaxesPaid(){
+    public double getPay() {
+        return netPay;
+    }
+
+    /**
+     * Gets the taxes paid for the current pay period.
+     *
+     * @return the taxes paid for the current pay period
+     */
+    @Override
+    public double getTaxesPaid() {
         return tax;
     }
 
+    /**
+     * Gets the YTD earnings of the employee.
+     *
+     * @return the YTD earnings of the employee
+     */
+    public double getYtdE() {
+        return ytdE;
+    }
+
+    /**
+     * Gets the taxes paid for the current pay period.
+     *
+     * @return the taxes paid for the current pay period
+     */
+    public double getYtdT() {
+        return ytdT;
+    }
+
+    /**
+     * Converts the paystub to a CSV string.
+     *
+     * @return the paystub as a CSV string
+     */
     @Override
-    public String toCSV(){
+    public String toCSV() {
         return String.format("%s,%.2f,%.2f,%.2f,%.2f",
-                name, Npay, tax, ytdE, ytdT);
+                name, netPay, tax, ytdE, ytdT);
     }
 }
