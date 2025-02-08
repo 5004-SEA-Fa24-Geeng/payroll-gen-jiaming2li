@@ -47,7 +47,7 @@ public final class Builder {
          * @param csv csv string
          * @return a TimeCard object
          */
-    public static ITimeCard buildTimeCardFromCSV(String csv){
+    public static ITimeCard buildTimeCardFromCSV(String csv) {
         String[] s = csv.split(",");
             if (s.length != 2) {
                 return null;

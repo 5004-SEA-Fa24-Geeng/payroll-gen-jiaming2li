@@ -6,16 +6,29 @@ package student;
  * with the objects themselves and the concept of a factory, but we placed
  * them here to keep the code clean (and to help guide you).
  */
-public class HourlyEmployee implements IEmployee{
+public class HourlyEmployee implements IEmployee {
+    /** Employee's name */
     private String name;
+
+    /** employee ID */
     private String id;
+
+    /** Pay rate (hourly wage or annual salary) */
     private double payRate;
+
+    /** Year-to-date (YTD) earnings */
     private double ytdEarnings;
+
+    /** Year-to-date (YTD) taxes paid */
     private double ytdTaxesPaid;
+
+    /** Pre-tax deductions */
     private double pretaxDeductions;
 
 
-    public HourlyEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
+    public HourlyEmployee(String name, String id, double payRate,
+                          double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions
+    ) {
         this.name = name;
         this.id = id;
         this.payRate = payRate;
@@ -30,7 +43,7 @@ public class HourlyEmployee implements IEmployee{
      * @return the name of the employee
      */
     @Override
-    public String getName(){
+    public String getName() {
         return name;
         }
 
@@ -40,7 +53,7 @@ public class HourlyEmployee implements IEmployee{
      * @return the ID of the employee
      */
     @Override
-    public String getID(){
+    public String getID() {
         return id;
     }
 
@@ -50,7 +63,7 @@ public class HourlyEmployee implements IEmployee{
      * @return the pay rate of the employee
      */
     @Override
-    public double getPayRate(){
+    public double getPayRate() {
         return payRate;
     }
 
@@ -60,7 +73,7 @@ public class HourlyEmployee implements IEmployee{
      * @return the YTD earnings of the employee
      */
     @Override
-    public double getYTDEarnings(){
+    public double getYTDEarnings() {
         return ytdEarnings;
     }
 
@@ -71,7 +84,7 @@ public class HourlyEmployee implements IEmployee{
      * @return the YTD taxes paid by the employee
      */
     @Override
-    public double getYTDTaxesPaid(){
+    public double getYTDTaxesPaid() {
         return ytdTaxesPaid;
     }
 
@@ -81,7 +94,7 @@ public class HourlyEmployee implements IEmployee{
      * @return the pretax deductions for the employee
      */
     @Override
-    public double getPretaxDeductions(){
+    public double getPretaxDeductions() {
         return pretaxDeductions;
     }
 
@@ -92,7 +105,7 @@ public class HourlyEmployee implements IEmployee{
      * @return the type of the employee as a string
      */
     @Override
-    public String getEmployeeType(){
+    public String getEmployeeType() {
         return "HOURLY";
     }
 
@@ -104,7 +117,7 @@ public class HourlyEmployee implements IEmployee{
      * @return the pay stub for the current pay period
      */
     @Override
-    public IPayStub runPayroll(double hoursWorked){
+    public IPayStub runPayroll(double hoursWorked) {
 
         if (hoursWorked < 0) {
             return null;
@@ -112,15 +125,15 @@ public class HourlyEmployee implements IEmployee{
 
         double h_pay = hoursWorked * payRate;
         if (hoursWorked > 40) {
-            h_pay += (hoursWorked-40)*0.5 * payRate;
+            h_pay += (hoursWorked-40) * 0.5 * payRate;
         };
 
-        double h_taxes = (h_pay - pretaxDeductions)* 0.2265;
-        double net_pay = h_pay-h_taxes-pretaxDeductions;
+        double h_taxes = (h_pay - pretaxDeductions) * 0.2265;
+        double net_pay = h_pay - h_taxes-pretaxDeductions;
         ytdEarnings += net_pay;
         ytdTaxesPaid += h_taxes;
 
-        return new PayStub(name, net_pay,h_taxes,ytdEarnings,ytdTaxesPaid);
+        return new PayStub(name, net_pay, h_taxes, ytdEarnings, ytdTaxesPaid);
     }
 
     /**

@@ -21,7 +21,7 @@ public final class PayrollGenerator {
     }
 
     /**
-     * main part for the generator
+     * main part for the generator.
      * @param args
      */
     public static void main(String[] args) {

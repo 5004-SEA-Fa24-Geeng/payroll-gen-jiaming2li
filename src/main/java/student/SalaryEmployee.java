@@ -1,15 +1,28 @@
 package student;
 
 public class SalaryEmployee implements IEmployee{
+    /** Employee's name */
     private String name;
+
+    /** employee ID */
     private String id;
+
+    /** Pay rate (hourly wage or annual salary) */
     private double payRate;
+
+    /** Year-to-date (YTD) earnings */
     private double ytdEarnings;
+
+    /** Year-to-date (YTD) taxes paid */
     private double ytdTaxesPaid;
+
+    /** Pre-tax deductions */
     private double pretaxDeductions;
 
 
-    public SalaryEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
+    public SalaryEmployee(String name, String id, double payRate,
+                          double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions
+    ) {
         this.name = name;
         this.id = id;
         this.payRate = payRate;
@@ -97,18 +110,18 @@ public class SalaryEmployee implements IEmployee{
      * @return the pay stub for the current pay period
      */
     @Override
-    public IPayStub runPayroll(double hoursWorked){
+    public IPayStub runPayroll(double hoursWorked) {
         if (hoursWorked < 0) {
             return null;
         }
 
-        double h_pay = payRate/24;
-        double h_taxes = (h_pay - pretaxDeductions)* 0.2265;
-        double net_pay = h_pay-h_taxes-pretaxDeductions;
-        ytdEarnings += net_pay;
-        ytdTaxesPaid += h_taxes;
+        double hPay = payRate / 24;
+        double hTaxes = (hPay - pretaxDeductions) * 0.2265;
+        double netPay = hPay - hTaxes - pretaxDeductions;
+        ytdEarnings += netPay;
+        ytdTaxesPaid += hTaxes;
 
-        return new PayStub(name,net_pay, h_taxes, ytdEarnings, ytdTaxesPaid);
+        return new PayStub(name, netPay, hTaxes, ytdEarnings, ytdTaxesPaid);
     }
 
     /**
