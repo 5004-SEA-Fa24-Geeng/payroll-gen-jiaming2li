@@ -1,5 +1,8 @@
 package student;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Represents a salary employee, storing details such as pay rate, work hours, and earnings.
  * This class manages payroll-related calculations for hourly employees.
@@ -120,19 +123,25 @@ public class SalaryEmployee implements IEmployee {
      * @param hoursWorked the hours worked for the pay period
      * @return the pay stub for the current pay period
      */
-    @Override
     public IPayStub runPayroll(double hoursWorked) {
         if (hoursWorked < 0) {
             return null;
         }
 
-        double hPay = payRate / 24;
-        double hTaxes = (hPay - pretaxDeductions) * 0.2265;
-        double netPay = hPay - hTaxes - pretaxDeductions;
-        ytdEarnings += netPay;
-        ytdTaxesPaid += hTaxes;
+        BigDecimal pDeductions = new BigDecimal(pretaxDeductions);
 
-        return new PayStub(name, netPay, hTaxes, ytdEarnings, ytdTaxesPaid);
+
+        BigDecimal sPay = new BigDecimal(payRate).divide(new BigDecimal(24), 2, RoundingMode.HALF_UP);
+        BigDecimal sTaxesBD = (sPay.subtract(pDeductions)).multiply(new BigDecimal(0.2265));
+        BigDecimal netPayBD = sPay.subtract(sTaxesBD).subtract(pDeductions);
+
+
+        ytdEarnings = new BigDecimal(ytdEarnings).add(netPayBD).doubleValue();
+        ytdTaxesPaid = new BigDecimal(ytdTaxesPaid).add(sTaxesBD).doubleValue();
+        double sTaxes = sTaxesBD.doubleValue();
+        double netPay = netPayBD.doubleValue();
+
+        return new PayStub(name, netPay, sTaxes, ytdEarnings, ytdTaxesPaid);
     }
 
     /**

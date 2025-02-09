@@ -47,9 +47,9 @@ public class PayStub implements IPayStub {
     }
 
     /**
-     * Gets the pay for the current pay period.
+     * Gets the net pay for the current pay period.
      *
-     * @return the pay for the current pay period
+     * @return the net pay for the current pay period
      */
     @Override
     public double getPay() {

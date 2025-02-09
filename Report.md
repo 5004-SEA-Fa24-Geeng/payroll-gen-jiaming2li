@@ -4,33 +4,48 @@ This report helps you demonstrate your understanding of the concepts. You should
 
 ## Technical Questions
 
-1. What does CSV stand for? 
-   
+**1. What does CSV stand for?**  
+CSV stands for Comma-Separated Values. It is a file format used to store tabular data, where each value is separated by a comma.[1]
 
-2. Why would you declare `List<IEmployee>` instead of `ArrayList<HourlyEmployee>`?
+**2. Why would you declare `List<IEmployee>` instead of `ArrayList<HourlyEmployee>`?**    
+This gives you the flexibility to use any type of List (e.g., ArrayList, LinkedList, etc.) and any class that implements the IEmployee interface. 
 
-3. When you have one class referencing another object, such as storing that object as one of the attributes of the first class - what type of relationship is that called (between has-a and is-a)?
+**3. When you have one class referencing another object, such as storing that object as one of the attributes of the first class - what type of relationship is that called (between has-a and is-a)?**  
+   It represents a "has-a" relationship.
 
-4. Can you provide an example of a has-a relationship in your code (if one exists)?
+**4. Can you provide an example of a has-a relationship in your code (if one exists)?**   
+   The runPayroll method in the HourlyEmployee class returns a PayStub object, which means that an HourlyEmployee "has-a" PayStub.
+
+**5. Can you provide an example of an is-a relationship in your code (if one exists)?**  
+Since HourlyEmployee implements the IEmployee interface, it follows the "is-a" relationship. This means that HourlyEmployee is a type of IEmployee.
+
+**6. What is the difference between an interface and an abstract class?**  
+- Interface defines a contract that classes must follow while abstract class serves as a base class that other classes extend.
+- Interface provides only method signatures without implementation while abstract class can have both.
+- A class can implement multiple interfaces while a class can extend only one abstract class.
+- Interface's fields are public, static, and final by default while abstract class can have instance variables.
+- Interface cannot have constructors while abstract class can have.
+
+**7. What is the advantage of using an interface over an abstract class?**  
+- A class can implement multiple interfaces, enabling greater flexibility in designing. But it can extend only one abstract class.
+- Interfaces define a contract without enforcing any specific implementation. allowing different classes to implement the interface in their own way. 
+- Default methods are introduced in interfaces, allowing for method implementation while still supporting multiple inheritance.
+
+**8. Is the following code valid or not? `List<int> numbers = new ArrayList<int>();`, explain why or why not. If not, explain how you can fix it.**  
+It is invalid as generics should work with object instead of primitive types. It should be `List<Integer> numbers = new ArrayList<Integer>()`.
 
 
-5. Can you provide an example of an is-a relationship in your code (if one exists)?
+**9. Which class/method is described as the "driver" for your application?**  
+PayrollGenerator is the driver as it contains the main method, which is the entry point for execution.
+In main, it creats different new objects and call their methods to process command-line arguments, read employee and time card data from files, generate pay stubs based on worked hours and create output files.
+By doing so, it initializes and manages the necessary workflows within the program, making it the primary "driver" class of the application.
 
 
-6. What is the difference between an interface and an abstract class?
+**10. How do you create a temporary folder for JUnit Testing?**  
+We can use `@TempDir` annotation to creat a temporary files which provides a temporary directory that is automatically created for each test method, and it is automatically cleaned up after the test finishes.
+After declaring `@TempDir` annotation and `static Path tempDir`, we can use `resolve()` to create file in the folder, like`Path employees = tempDir.resolve("employees.csv")`.
 
 
-7. What is the advantage of using an interface over an abstract class?
-
-
-8. Is the following code valid or not? `List<int> numbers = new ArrayList<int>();`, explain why or why not. If not, explain how you can fix it. 
-
-
-9. Which class/method is described as the "driver" for your application? 
-
-
-
-10. How do you create a temporary folder for JUnit Testing? 
 
 
 ## Deeper Thinking 
