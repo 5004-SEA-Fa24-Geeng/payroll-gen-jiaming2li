@@ -133,20 +133,20 @@ public class HourlyEmployee implements IEmployee {
         BigDecimal pDeductions = new BigDecimal(pretaxDeductions);
         BigDecimal pRate = new BigDecimal(payRate);
 
-        BigDecimal Pay = pRate.multiply(new BigDecimal(hoursWorked));
+        BigDecimal pay = pRate.multiply(new BigDecimal(hoursWorked));
         if (hoursWorked > 40) {
-            Pay = Pay.add( new BigDecimal((hoursWorked - 40)).multiply(new BigDecimal(0.5)).multiply(pRate));
+            pay = pay.add(new BigDecimal((hoursWorked - 40)).multiply(new BigDecimal(0.5)).multiply(pRate));
         }
-        BigDecimal sTaxesBD = (Pay.subtract(pDeductions)).multiply(new BigDecimal(0.2265));
-        BigDecimal netPayBD = Pay.subtract(sTaxesBD).subtract(pDeductions);
+        BigDecimal sTaxesBd = (pay.subtract(pDeductions)).multiply(new BigDecimal(0.2265));
+        BigDecimal netPayBd = pay.subtract(sTaxesBd).subtract(pDeductions);
 
-        ytdEarnings = new BigDecimal(ytdEarnings).add(netPayBD).doubleValue();
-        ytdTaxesPaid = new BigDecimal(ytdTaxesPaid).add(sTaxesBD).doubleValue();
+        ytdEarnings = new BigDecimal(ytdEarnings).add(netPayBd).doubleValue();
+        ytdTaxesPaid = new BigDecimal(ytdTaxesPaid).add(sTaxesBd).doubleValue();
 
-        double Taxes = sTaxesBD.doubleValue();
-        double netPay = netPayBD.doubleValue();
+        double taxes = sTaxesBd.doubleValue();
+        double netPay = netPayBd.doubleValue();
 
-        return new PayStub(name, netPay, Taxes, ytdEarnings, ytdTaxesPaid);
+        return new PayStub(name, netPay, taxes, ytdEarnings, ytdTaxesPaid);
     }
 
     /**
