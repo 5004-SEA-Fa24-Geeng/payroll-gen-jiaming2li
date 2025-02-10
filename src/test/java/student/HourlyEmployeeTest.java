@@ -12,9 +12,6 @@ class HourlyEmployeeTest {
 
     @BeforeEach
     void setUp() {
-        //assertThrows(IllegalArgumentException.class, () -> {
-        //    new Greeter(NAME_ONE, 0);
-        //});
         e1 = new HourlyEmployee("Luffy", "s192", 30.00, 20000.00, 4530, 0);
         assertTrue(e1 instanceof HourlyEmployee);
         e2 = new HourlyEmployee("Light Yagami", "x101", 25.00, 10000.00, 2265, 0);

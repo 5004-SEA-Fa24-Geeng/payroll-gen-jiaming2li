@@ -213,10 +213,10 @@ classDiagram
     HourlyEmployee --> PayStub: has a
     SalaryEmployee --> PayStub: has a
 
-    Builder --> ITimeCard:uses
-    Builder --> IEmployee:uses
-    Builder --> SalaryEmployee:uses
-    Builder --> HourlyEmployee:uses
+    Builder --> ITimeCard:creates
+    Builder --> IEmployee:creates
+    Builder --> SalaryEmployee:creates
+    Builder --> HourlyEmployee:creates
 
     PayrollGenerator --> Builder:uses
     PayrollGenerator --> FileUtil:uses
