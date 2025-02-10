@@ -28,7 +28,7 @@ Since HourlyEmployee implements the IEmployee interface, it follows the "is-a" r
 
 **7. What is the advantage of using an interface over an abstract class?**  
 - A class can implement multiple interfaces, enabling greater flexibility in designing. But it can extend only one abstract class.[^2]
-- Interfaces define a contract without enforcing any specific implementation. allowing different classes to implement the interface in their own way. 
+- Interfaces define a contract without enforcing any specific implementation, allowing different classes to implement the interface in their own way. 
 - Default methods are introduced in interfaces, allowing for method implementation while still supporting multiple inheritance.[^4]
 
 **8. Is the following code valid or not? `List<int> numbers = new ArrayList<int>();`, explain why or why not. If not, explain how you can fix it.**  
