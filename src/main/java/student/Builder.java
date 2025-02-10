@@ -24,17 +24,23 @@ public final class Builder {
     public static IEmployee buildEmployeeFromCSV(String csv) {
         String[] s = csv.split(",");
         if (s.length != 7) {
-            throw new IllegalArgumentException("Invalid CSV format.");
+            return null;
         }
-        double payRate = Double.parseDouble(s[3]);
-        double ytdEarnings = Double.parseDouble(s[5]);
-        double ytdTaxes = Double.parseDouble(s[6]);
-        double preDeduction = Double.parseDouble(s[4]);
 
-        if (s[0].equals("HOURLY")) {
-            return new HourlyEmployee(s[1], s[2], payRate, ytdEarnings, ytdTaxes, preDeduction);
-        } else {
-            return new SalaryEmployee(s[1], s[2], payRate, ytdEarnings, ytdTaxes, preDeduction);
+        try {
+            double payRate = Double.parseDouble(s[3]);
+            double ytdEarnings = Double.parseDouble(s[5]);
+            double ytdTaxes = Double.parseDouble(s[6]);
+            double preDeduction = Double.parseDouble(s[4]);
+
+            if (s[0].equals("HOURLY")) {
+                return new HourlyEmployee(s[1], s[2], payRate, ytdEarnings, ytdTaxes, preDeduction);
+            } else {
+                return new SalaryEmployee(s[1], s[2], payRate, ytdEarnings, ytdTaxes, preDeduction);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Unable to parse numeric fields.");
+            return null;
         }
 
     }
@@ -54,11 +60,16 @@ public final class Builder {
             }
 
         String id = s[0];
-        double hoursWorked = Double.parseDouble(s[1]);
-        return new TimeCard(id, hoursWorked);
-        };
+        try {
+            double hoursWorked = Double.parseDouble(s[1]);
+            return new TimeCard(id, hoursWorked);
+        } catch (NumberFormatException e) {
+            System.out.println("Unable to parse numeric fields.");
+            return null;
+          }
+    };
 
-    }
+}
 
 
 

@@ -133,20 +133,20 @@ public class HourlyEmployee implements IEmployee {
         BigDecimal pDeductions = new BigDecimal(pretaxDeductions);
         BigDecimal pRate = new BigDecimal(payRate);
 
-        BigDecimal sPay = pRate.multiply(new BigDecimal(hoursWorked));
+        BigDecimal Pay = pRate.multiply(new BigDecimal(hoursWorked));
         if (hoursWorked > 40) {
-            sPay = sPay.add( new BigDecimal((hoursWorked - 40)).multiply(new BigDecimal(0.5)).multiply(pRate));
+            Pay = Pay.add( new BigDecimal((hoursWorked - 40)).multiply(new BigDecimal(0.5)).multiply(pRate));
         }
-        BigDecimal sTaxesBD = (sPay.subtract(pDeductions)).multiply(new BigDecimal(0.2265));
-        BigDecimal netPayBD = sPay.subtract(sTaxesBD).subtract(pDeductions);
+        BigDecimal sTaxesBD = (Pay.subtract(pDeductions)).multiply(new BigDecimal(0.2265));
+        BigDecimal netPayBD = Pay.subtract(sTaxesBD).subtract(pDeductions);
 
         ytdEarnings = new BigDecimal(ytdEarnings).add(netPayBD).doubleValue();
         ytdTaxesPaid = new BigDecimal(ytdTaxesPaid).add(sTaxesBD).doubleValue();
 
-        double sTaxes = sTaxesBD.doubleValue();
+        double Taxes = sTaxesBD.doubleValue();
         double netPay = netPayBD.doubleValue();
 
-        return new PayStub(name, netPay, sTaxes, ytdEarnings, ytdTaxesPaid);
+        return new PayStub(name, netPay, Taxes, ytdEarnings, ytdTaxesPaid);
     }
 
     /**

@@ -8,13 +8,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class SalaryEmployeeTest {
     private SalaryEmployee e1;
     private SalaryEmployee e2;
+    private SalaryEmployee e3;
 
     @BeforeEach
     void setUp() {
         e1 = new SalaryEmployee("Nami", "s193", 200000, 17017, 4983, 1000);
         e2 = new SalaryEmployee("Edward Elric", "f103", 100000, 11000, 2333, 250);
+        e3 = new SalaryEmployee("Misa Amane", "x102", 150000, 12000, 3500, 500);
         assertTrue(e1 instanceof SalaryEmployee);
         assertTrue(e2 instanceof SalaryEmployee);
+        assertTrue(e3 instanceof SalaryEmployee);
     }
 
 
@@ -67,6 +70,7 @@ class SalaryEmployeeTest {
         assertEquals(expectedCsv1, e1.runPayroll(60).toCSV());
         String expectedCsv2 = "Edward Elric,3029.54,887.13,14029.54,3220.13";
         assertEquals(expectedCsv2, e2.runPayroll(30).toCSV());
+        assertEquals(null, e3.runPayroll(-35));
         //SALARY,Nami,s193,200000.0,1000.0,22689.33,6644.0
     }
 

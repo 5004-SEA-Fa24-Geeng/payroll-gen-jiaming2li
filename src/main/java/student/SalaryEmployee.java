@@ -131,17 +131,17 @@ public class SalaryEmployee implements IEmployee {
         BigDecimal pDeductions = new BigDecimal(pretaxDeductions);
 
 
-        BigDecimal sPay = new BigDecimal(payRate).divide(new BigDecimal(24), 2, RoundingMode.HALF_UP);
-        BigDecimal sTaxesBD = (sPay.subtract(pDeductions)).multiply(new BigDecimal(0.2265));
-        BigDecimal netPayBD = sPay.subtract(sTaxesBD).subtract(pDeductions);
+        BigDecimal Pay = new BigDecimal(payRate).divide(new BigDecimal(24), 2, RoundingMode.HALF_UP);
+        BigDecimal TaxesBD = (Pay.subtract(pDeductions)).multiply(new BigDecimal(0.2265));
+        BigDecimal netPayBD = Pay.subtract(TaxesBD).subtract(pDeductions);
 
 
         ytdEarnings = new BigDecimal(ytdEarnings).add(netPayBD).doubleValue();
-        ytdTaxesPaid = new BigDecimal(ytdTaxesPaid).add(sTaxesBD).doubleValue();
-        double sTaxes = sTaxesBD.doubleValue();
+        ytdTaxesPaid = new BigDecimal(ytdTaxesPaid).add(TaxesBD).doubleValue();
+        double Taxes = TaxesBD.doubleValue();
         double netPay = netPayBD.doubleValue();
 
-        return new PayStub(name, netPay, sTaxes, ytdEarnings, ytdTaxesPaid);
+        return new PayStub(name, netPay, Taxes, ytdEarnings, ytdTaxesPaid);
     }
 
     /**

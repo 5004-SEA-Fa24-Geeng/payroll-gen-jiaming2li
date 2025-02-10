@@ -2,10 +2,10 @@ classDiagram
 
 
 
-    IEmployee <|-- HourlyEmployee: implements(is a)
-    IEmployee <|-- SalaryEmployee: implements(is a)
-    ITimeCard <|-- TimeCard: implements(is a)
-    IPayStub <|-- PayStub: implements(is a)
+    IEmployee <|-- HourlyEmployee: implements
+    IEmployee <|-- SalaryEmployee: implements
+    ITimeCard <|-- TimeCard: implements
+    IPayStub <|-- PayStub: implements
 
     HourlyEmployee --> PayStub: has a
     SalaryEmployee --> PayStub: has a
